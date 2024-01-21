@@ -34,8 +34,12 @@ jobs:
       run: mvn clean package -B --update-snapshots verify
 
     - name: Create Package
-      run: mkdir staging && cp target/*.jar staging
-    - uses: actions/upload-artifact@v3
+      run: |
+        mkdir staging 
+        cp target/*.jar staging
+
+    - name: Upload Package
+      uses: actions/upload-artifact@v3
       with:
         name: Package
         path: staging

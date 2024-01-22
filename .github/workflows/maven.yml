@@ -109,10 +109,14 @@ jobs:
         env:
           SYNK_TOKEN: ${{ secrets.SYNK_TOKEN }}
         with:
-          args: --sarif-file-output=snyk.sarif
+          args: --sarif-file-output=results.sarif
 
       - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: snyk.sarif
-          checkout_path: /home/runner/work/cicd_demo/cicd_demo
+          sarif_file: results.sarif
+
+
+
+
+

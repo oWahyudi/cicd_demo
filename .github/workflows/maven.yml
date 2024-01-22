@@ -17,6 +17,9 @@ on:
 jobs:
   build_test:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
 
     steps:
     - name: Checkout Source Codes
@@ -29,8 +32,8 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Build with Maven (Clean, Compile, Run Test, Packaging)
-      run: mvn clean package -B --update-snapshots verify
+    - name: Build with Maven (Clean, Compile, Run Test, Packaging) and Run SonarCloud
+      run: mvn clean package -B --update-snapshots verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
     - name: Create Package
       run: |
@@ -42,21 +45,4 @@ jobs:
       with:
         name: Package
         path: staging
-
-
-  sonarcloud:
-    needs: build_test
-    env:
-      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Source Codes
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Code Scan with Sonar-Cloud
-        uses: SonarSource/sonarcloud-github-action@master
 

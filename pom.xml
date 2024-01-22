@@ -17,6 +17,7 @@
         <java.version>20</java.version>
         <sonar.organization>owahyudi</sonar.organization>
         <sonar.projectKey>oWahyudi_cicd_demo</sonar.projectKey>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <dependencies>
         <dependency>

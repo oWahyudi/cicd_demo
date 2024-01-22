@@ -14,7 +14,7 @@
     <name>cicd_demo</name>
     <description>cicd_demo</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>20</java.version>
         <sonar.organization>owahyudi</sonar.organization>
         <sonar.projectKey>oWahyudi_cicd_demo</sonar.projectKey>
     </properties>

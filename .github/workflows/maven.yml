@@ -46,6 +46,9 @@ jobs:
 
   sonarcloud:
     needs: build_test
+    env:
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
     runs-on: ubuntu-latest
 
     steps:
@@ -56,6 +59,4 @@ jobs:
 
       - name: Code Scan with Sonar-Cloud
         uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
+

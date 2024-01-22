@@ -98,21 +98,18 @@ jobs:
   snyk:
     needs: test
     runs-on: ubuntu-latest
-    env:
-      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
     steps:
       - name: Checkout Source Codes
         uses: actions/checkout@v3
-
-      #- name: Authenticate Snyk
-      #  run: snyk auth $SNYK_TOKEN
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven@master
         continue-on-error: true
         with:
           args: --sarif-file-output=results.sarif
+        env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3

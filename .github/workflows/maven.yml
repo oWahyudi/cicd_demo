@@ -98,16 +98,19 @@ jobs:
   snyk:
     needs: test
     runs-on: ubuntu-latest
+    env:
+      SYNK_TOKEN: ${{ secrets.SYNK_TOKEN }}
 
     steps:
       - name: Checkout Source Codes
         uses: actions/checkout@v3
 
+      - name: Authenticate Synk
+        run: snyk auth $SYNK_TOKEN
+
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven@master
         continue-on-error: true
-        env:
-          SYNK_TOKEN: ${{ secrets.SYNK_TOKEN }}
         with:
           args: --sarif-file-output=results.sarif
 

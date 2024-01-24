@@ -35,7 +35,7 @@ Before setting up the pipeline, make sure you have the following:
 - Customize the CI/CD configuration file based on your project's requirements.
 - Explore additional features and options provided by SonarCloud and Snyk for more advanced analysis.
 - Explore auto deployment AWS Elastic Beanstalk.
-- ```yaml
+  ```yaml
       - name: Deploy to AWS Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v15
         with:
@@ -46,7 +46,6 @@ Before setting up the pipeline, make sure you have the following:
           region: "your-aws-region"
           version_label: ${{ github.sha }}
           source_bundle: "target/your-application-name.jar"
-  ```yaml
   
 
 ## Resources

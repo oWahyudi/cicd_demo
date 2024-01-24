@@ -34,22 +34,42 @@ Before setting up the pipeline, make sure you have the following:
 
 - Customize the CI/CD configuration file based on your project's requirements.
 - Explore additional features and options provided by SonarCloud and Snyk for more advanced analysis.
-- Explore auto deployment AWS Elastic Beanstalk.
+- Explore auto deployment to AWS via beanstalk-deploy scripts.
   ```yaml
       - name: Deploy to AWS Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v15
         with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: "your-application-name"
-          environment_name: "your-environment-name"
-          region: "your-aws-region"
-          version_label: ${{ github.sha }}
-          source_bundle: "target/your-application-name.jar"
+          aws_access_key  : <AWS_ACCESS_KEY_ID>
+          aws_secret_key  : <AWS_SECRET_ACCESS_KEY>
+          application_name: <Application-Name>
+          environment_name: <Environment-Name>
+          region          : <AWS-Region>
+          version_label   : <Unique-Version-No>
+          source_bundle   : <JAR-File-Path>
   
+- Explore auto deployment AWS via CLI elastic Beanstalk.
+  ```yaml
+      - name: Deploy to AWS Elastic Beanstalk
+        run: |
+          aws elasticbeanstalk create-application-version \
+          --application-name <Application-Name> \
+          --source-bundle S3Bucket=<Bucket-Name>,S3Key=<Package-Name> \
+          --version-label <Unique-Version-No> \
+          --description <Description>
 
+          aws elasticbeanstalk update-environment \
+          --application-name <Application-Name> \
+          --environment-name <Environment-Name> \
+          --version-label <Unique-Version-No>
+
+
+          
 ## Resources
 
 - [SonarCloud Documentation](https://sonarcloud.io/documentation)
 - [Snyk Documentation](https://support.snyk.io/)
 - [Beanstalk Deploy Documentation](https://github.com/marketplace/actions/beanstalk-deploy#)
+- [AWS CLI Create Appliction package version](https://docs.aws.amazon.com/cli/latest/reference/elasticbeanstalk/create-application-version.html)
+- [AWS CLI Update Environment](https://docs.aws.amazon.com/cli/latest/reference/elasticbeanstalk/update-environment.html)
+
+

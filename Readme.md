@@ -64,7 +64,21 @@ Before setting up the pipeline, make sure you have the following:
           --environment-name <Environment-Name> \
           --version-label <Unique-Version-No>
 
+- Explore alternative using IAM Role for automated deployments instead of IAM User
+  ```yaml
+      - name: Assume IAM Role for Granting Permission
+        id: assume-role
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::<ACCOUNT_ID>:role/<YourRoleName>
+          aws-region: <Aws-Region>
 
+      - name: Copy JAR file to S3 bucket
+        run: aws s3 cp <filepath/filename> s3://<S3-Bucket-Name/filename>
+        env:
+          AWS_ACCESS_KEY_ID: ${{ steps.assume-role.outputs.access_key }}
+          AWS_SECRET_ACCESS_KEY: ${{ steps.assume-role.outputs.secret_access_key }}
+          AWS_SESSION_TOKEN: ${{ steps.assume-role.outputs.session_token }}
           
 ## Resources
 
@@ -73,5 +87,6 @@ Before setting up the pipeline, make sure you have the following:
 - [Beanstalk Deploy Documentation](https://github.com/marketplace/actions/beanstalk-deploy#)
 - [AWS CLI Create Appliction package version](https://docs.aws.amazon.com/cli/latest/reference/elasticbeanstalk/create-application-version.html)
 - [AWS CLI Update Environment](https://docs.aws.amazon.com/cli/latest/reference/elasticbeanstalk/update-environment.html)
+- [AWS Credentials for Github Actions](https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions)
 
 

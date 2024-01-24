@@ -7,7 +7,7 @@ import sg.edu.nus.iss.cicd_demo.controller.DataController;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class DataControllerTest {
+class DataControllerTest {
     @Autowired
     DataController dataController;
 

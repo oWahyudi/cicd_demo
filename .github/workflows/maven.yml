@@ -130,6 +130,7 @@ jobs:
       EB_ENVIRONMENT_NAME  : "cicd-demo-env"
       DEPLOY_PACKAGE_NAME  : "cicd-demo-${{ github.sha }}.jar" 
       AWS_REGION           : "us-east-1"
+      TEST                 : "${{ github.workspace }}"
 
     steps:
       - name: Configure AWS credentials
@@ -140,7 +141,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Copy JAR file to S3 bucket
-        run: aws s3 cp "${{ github.workspace }}/staging/cicd_demo-0.0.1-SNAPSHOT.jar" s3://${{ env.EB_PACKAGE_S3_BUCKET }}/${{ env.DEPLOY_PACKAGE_NAME }}
+        run: aws s3 cp "target/cicd_demo-0.0.1-SNAPSHOT.jar" s3://${{ env.EB_PACKAGE_S3_BUCKET }}/${{ env.DEPLOY_PACKAGE_NAME }}
 
 
 

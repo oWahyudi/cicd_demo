@@ -1,4 +1,4 @@
-# CI/CD Pipeline with SonarCloud and Snyk
+# CI/CD Pipeline with SonarCloud, Snyk and AWS Elastic Beanstalk
 
 This repository demonstrates the experimental setup of a Continuous Integration/Continuous Deployment (CI/CD) pipeline using SonarCloud for code quality analysis and Snyk for security vulnerability scanning.
 

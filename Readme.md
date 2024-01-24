@@ -26,9 +26,11 @@ Before setting up the pipeline, make sure you have the following:
 
 3. **Configure Snyk Token**: Generate a Snyk token and add it as a secret in your GitHub repository. Replace `SNYK_TOKEN` in the CI/CD configuration with your actual Snyk token.
 
-4. **Commit and Push**: Commit the changes to your repository and push them to trigger the CI/CD pipeline.
+4. **Configure AWS Token**: Generate a AWS access token and add it as a secret in your GitHub repository. Replace `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in the CI/CD configuration with your actual AWS token.
 
-5. **Monitor Results**: Visit your CI/CD platform (e.g., GitHub Actions) to monitor the progress and results of the pipeline.
+5. **Commit and Push**: Commit the changes to your repository and push them to trigger the CI/CD pipeline.
+
+6. **Monitor Results**: Visit your CI/CD platform (e.g., GitHub Actions) to monitor the progress and results of the pipeline.
 
 ## Additional Notes
 
